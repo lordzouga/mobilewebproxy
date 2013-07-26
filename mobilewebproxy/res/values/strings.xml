@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">mobilewebproxy</string>
+    <string name="app_name">Mobile Web Proxy</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="start_button_title">Start</string>
+    
+    <string name="settings_page_title">Settings</string>
+    
+    <string name="pref_proxy_server_title">Proxy Server</string>
+    <string name="pref_proxy_server_summary">Server to connect to</string>
+    <string name="pref_proxy_server_default_value">10.170.71.5</string>
+    
+    <string name="pref_http_proxy_port_title">HTTP proxy port</string>
+    <string name="pref_http_proxy_port_summary">port to listen to for HTTP connections</string>
+    <string name="pref_http_proxy_port_default_value">6050</string>
+    
+    <string name="pref_ssl_proxy_port_title">SSL proxy port</string>
+    <string name="pref_ssl_proxy_port_summary">port to listen to for HTTPS connections</string>
+    <string name="pref_ssl_proxy_port_default_value">6051</string>
+    <string name="pref_organization_proxy_host_title">Organization proxy host</string>
+    <string name="pref_organization_proxy_host_summary">host that will work as freesite</string>
+    <string name="pref_organization_proxy_host_default_value">freesite.com</string>
+    <string name="pref_organization_proxy_port_title">Organization proxy port</string>
+    <string name="pref_organization_proxy_port_summary">port associated with the host above</string>
+    <string name="pref_organization_proxy_port_default_value">80</string>
+    <string name="main_activity">Main</string>
+    <string name="pref_organization_proxy_username_title">Proxy Username</string>
+    <string name="pref_organization_proxy_username_summary">username for protected proxies</string>
+    <string name="pref_organization_proxy_username_default_value">web</string>
+    <string name="pref_organization_proxy_password_title">Proxy Password</string>
+    <string name="pref_organization_proxy_password_summary">password for protected proxies</string>
+    <string name="pref_organization_proxy_password_default_value">web</string>
+    <string name="pref_enable_encryption_title">Enable encryption</string>
+    <string name="pref_enable_encryption_summary">decides if encryption will be used during server I/O</string>
+    <string name="pref_enable_encryption_default_value">false</string>
+    <string name="pref_webserver_host_title">Webserver host</string>
+    <string name="pref_webserver_host_summary">a free to use host</string>
+    <string name="pref_webserver_host_default_value">yourfreesite.com</string>
+    <string name="pref_webserver_port_title">User webserver port</string>
+    <string name="pref_webserver_port_summary">uploaded webserver port</string>
+    <string name="pref_webserver_port_default_value">80</string>
+    <string name="pref_max_buffer_title">Maximum data Buffer</string>
+    <string name="pref_max_buffer_summary">size of the data to be kept in memory</string>
+    <string name="pref_max_buffer_default_value">30000</string>
+    <string name="pref_webserver_url_title">Web server URL</string>
+    <string name="pref_webserver_url_summary">user created webserver</string>
+    <string name="pref_webserver_url_default_value">yourfreesite.com</string>
 
 </resources>

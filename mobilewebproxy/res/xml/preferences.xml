@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <EditTextPreference 
+        android:key="http_proxy_port"
+        android:title="@string/pref_http_proxy_port_title"
+        android:summary="@string/pref_http_proxy_port_summary"
+        android:defaultValue="6050"
+        android:inputType="number"/>
+    
+    <EditTextPreference 
+        android:key="ssl_proxy_port"
+        android:title="@string/pref_ssl_proxy_port_title"
+        android:summary="@string/pref_ssl_proxy_port_summary"
+        android:defaultValue="@string/pref_ssl_proxy_port_default_value"
+        android:inputType="number"/>
+    
+    <EditTextPreference 
+        android:key="webserver_host"
+        android:title="@string/pref_webserver_host_title"
+        android:summary="@string/pref_webserver_host_summary"
+        android:defaultValue="@string/pref_webserver_host_default_value"
+       />
+    
+    <EditTextPreference 
+        android:key="webserver_port"
+        android:title="@string/pref_webserver_port_title"
+        android:summary="@string/pref_webserver_port_summary"
+        android:defaultValue="@string/pref_webserver_port_default_value"
+        />
+    
+    <EditTextPreference
+        android:key="webserver_url"
+        android:title="@string/pref_webserver_url_title"
+        android:summary="@string/pref_webserver_url_summary"
+        android:defaultValue="@string/pref_webserver_url_default_value"
+        />
+    <EditTextPreference 
+        android:key="organization_proxy_host"
+        android:title="@string/pref_organization_proxy_host_title"
+        android:summary="@string/pref_organization_proxy_host_summary"
+        android:defaultValue="yourass.com"
+        />
+    
+    <EditTextPreference 
+        android:key="organization_proxy_port"
+        android:title="@string/pref_organization_proxy_port_title"
+        android:summary="@string/pref_organization_proxy_port_summary"
+        android:defaultValue="80"
+        android:inputType="number"/>
+    
+    <EditTextPreference
+        android:key="organization_proxy_username"
+        android:title="@string/pref_organization_proxy_username_title"
+        android:summary="@string/pref_organization_proxy_username_summary"
+        android:defaultValue="@string/pref_organization_proxy_username_default_value"
+        />
+    
+    <EditTextPreference 
+        android:key="organization_proxy_password"
+        android:title="@string/pref_organization_proxy_password_title"
+        android:summary="@string/pref_organization_proxy_password_summary"
+        android:defaultValue="@string/pref_organization_proxy_password_default_value"
+        android:inputType="textPassword"
+        />
+    
+    <EditTextPreference 
+        android:key="max_buffer"
+        android:title="@string/pref_max_buffer_title"
+        android:summary="@string/pref_max_buffer_summary"
+        android:defaultValue="@string/pref_max_buffer_default_value"
+        />
+    
+    <CheckBoxPreference 
+        android:key="toggle_encryption"
+        android:title="@string/pref_enable_encryption_title"
+        android:summary="@string/pref_enable_encryption_summary"
+        android:defaultValue="true"
+        />
+    
+</PreferenceScreen>
