@@ -129,6 +129,7 @@ class HTTPProxyStarterHelper extends Thread {
 				
 				outgoing = new Socket(SettingsActivity.getWebServerPath(),
 						SettingsActivity.getWebServerPort());
+				outgoing.setSoTimeout(30000);
 			} else {
 				MainActivity.writeLog("webserver port is " + SettingsActivity.getOrganizationProxyPort());
 				outgoing = new Socket(

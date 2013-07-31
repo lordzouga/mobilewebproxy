@@ -63,6 +63,9 @@ class HTTPProxyThreadServer extends Thread {
 				}
 			}
 
+			client.write(header.toString().getBytes());
+			client.flush();
+			
 			MainActivity.writeDownloadCount(count1);
 				MainActivity.writeLog(new Date()
 						+ " HTTPProxyThreadServer ::Response Header =  "
@@ -98,13 +101,10 @@ class HTTPProxyThreadServer extends Thread {
 					}
 
 					if (SettingsActivity.getEncryptionMode()) {
-						client.write(header.toString().getBytes());
-						client.write('\n');
 						client.write(SimpleEncryptDecrypt.dec(buffer,
 								numberRead), 0, numberRead);
 						client.flush();
 					} else {
-						client.write(header.toString().getBytes());
 						client.write(buffer, 0, numberRead);
 						client.flush();
 					}

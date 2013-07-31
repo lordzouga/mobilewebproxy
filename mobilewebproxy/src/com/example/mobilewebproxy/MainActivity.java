@@ -24,21 +24,79 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.zouga.mobilewebproxy.network.ServerController;
 
+/*
+ * MainActvity is the entry point of this application.
+ * 
+ * it is the main UI class that displays the core functionalities of the program
+ * This class manages the Log view behind the UI and also updates the download and
+ * upload counter.
+ * 
+ * it is created from the SlidingMenu library project http://twitter.com/slidingmenu
+ * and also from the Sherlock Action Bar Library http://actionbarsherlock.com/ to allow
+ * action bar support for android versions earlier than 3.0
+ * 
+ * License
+-------
+
+    Copyright 2013 Ozojie Gerald ozojiechikelu@yahoo.com
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+    http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ */
+
 public class MainActivity extends SlidingActivity{
 
-	private LogBehindView _behindView = null;
+	private LogBehindView _behindView = null;//holds the log view
 	public static TextView logView = null;
+	
+	/*_indicatorAnimation is the animation used for rotating the outer ring.
+	 * it is used with _indicatorView to provide a way to monitor the network 
+	 * download speed.
+	 * 
+	 * I felt that using the usual textual byte update is too mainstream*/
 	private Animation _indicatorAnimation = null;
 	private ImageView _indicatorView = null;
+	
+	/*_downloadedTextView and _uploadedTextView are used to monitor the size of downloded 
+	 * and uploaded data respectively*/
 	private static TextView _downloadedTextView = null;
 	private static TextView _uploadedTextView = null;
-	private ServerController _serverController = null;
-	private static Editable _editable = null;
-	public static Context _context;
-	private Button _startButton = null;
-	private boolean _serverStarted = false;
-	private NotificationManager _notificationManager = null;
 	
+	/*
+	 * an instance of the ServerController Class used to monitor start or stop the server.
+	 */
+	private ServerController _serverController = null;
+	
+	/* 
+	 * a handle for the Editable class instance available in the Log view. 
+	 * used to update the textView with relevant runtime messages for the user
+	 */
+	private static Editable _editable = null;
+	
+	
+	public static Context _context;//context
+	
+	private Button _startButton = null;//controls the start and stop of the server
+
+	private boolean _serverStarted = false;//is true if server has started
+	
+	private NotificationManager _notificationManager = null;//used to manage app wide notification feature
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity#onCreate(android.os.Bundle)
+	 * 
+	 * initializes all useful classes
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,18 +123,20 @@ public class MainActivity extends SlidingActivity{
 		_indicatorView = (ImageView)findViewById(R.id.indicator);
 		_indicatorAnimation = AnimationUtils.loadAnimation(this, R.anim.indicator_rotate);
 		
+		/* see the SlidingMenu documentation for details*/
 		SlidingMenu slideMenu = getSlidingMenu();
 		slideMenu.setShadowWidth(R.dimen.shadow_width);
 		slideMenu.setShadowDrawable(R.drawable.shadow);
 		slideMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		slideMenu.setFadeDegree(0.35f);
 		slideMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		
+		///////////////////////////////////////////////////////////////
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		setSlidingActionBarEnabled(true);
 	}
 	
+	/*createNotification() creates a new notification and alerts the user*/
 	private void createNotification(){
 		NotificationCompat.Builder builder = 
 				new NotificationCompat.Builder(this)
@@ -94,6 +154,16 @@ public class MainActivity extends SlidingActivity{
 		
 		_notificationManager.notify(2, builder.getNotification());
 	}
+	
+	/*
+	 * onStartButtonclick() is called whenever the button is clicked
+	 * 
+	 * it checks if the server has already started by checking the value of _serverStarted
+	 * if the server has already started, it stops it else it starts it.
+	 * 
+	 * @param: View v
+	 * 		view to be clicked
+	 */
 	public void onStartButtonClick(View v){
 		
 		if(!_serverStarted){
@@ -113,8 +183,18 @@ public class MainActivity extends SlidingActivity{
 		}
 	}
 	
+	/*
+	 * writeLog() manages write operations to the log View.
+	 * the method uses the View's post() (see android's View documentation for details)
+	 * since the function will be often times called from another thread.
+	 * it uses a handle of the view's editable to write to the view
+	 * 
+	 * @param: String msg
+	 * 		message to be posted to in the log view
+	 */
 	public static void writeLog(final String msg){
 		
+		//runnable instance to be executed in the view's thread
 		Runnable runnable = new Runnable(){
 			@Override
 			public void run(){
@@ -126,6 +206,17 @@ public class MainActivity extends SlidingActivity{
 		logView.post(runnable);
 	}
 	
+	/*
+	 * writeDownloadCount() updates the UI's download count.
+	 * it uses the View's post() (see android's View documentation for more details)
+	 * since the method will be often called from another thread.
+	 * 
+	 * it updates the download count by calling getBytesTextValue() with downloadCount as argument
+	 * and sets the returned value as updated text
+	 * 
+	 * @param: long downloadCount
+	 * 		
+	 */
 	public static void writeDownloadCount(final long downloadCount){
 		Runnable runnable = new Runnable(){
 			@Override
@@ -138,6 +229,9 @@ public class MainActivity extends SlidingActivity{
 		_downloadedTextView.post(runnable);
 	}
 	
+	/*
+	 * writeDow
+	 */
 	public static void writeUploadCount(final long uploadCount){
 		Runnable runnable = new Runnable(){
 			@Override
